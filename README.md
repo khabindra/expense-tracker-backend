@@ -1,4 +1,3 @@
-
 # Django Expense Tracker API
 
 A RESTful backend API for tracking personal income and expenses, with JWT authentication and full CRUD support.
@@ -10,11 +9,14 @@ A RESTful backend API for tracking personal income and expenses, with JWT authen
 ### Backend (Django)
 
 ```bash
-git clone <repo-url>
-cd expense_tracker
+git clone https://github.com/khabindra/expense-tracker-backend.git
+
 python -m venv env
 source env/bin/activate   # On Windows: env\Scripts\activate
+cd  expense-tracker-backend
 pip install -r requirements.txt
+
+
 
 # Make migrations
 python manage.py makemigrations
@@ -25,6 +27,7 @@ python manage.py runserver
 ```
 
 #### 🔑 Superuser (optional)
+
 ```bash
 python manage.py createsuperuser
 ```
@@ -48,6 +51,7 @@ Make sure backend runs on `http://localhost:8000`.
 - JWT Token required for all API requests.
 - Get token via `/api/auth/login/`
 - Use in headers:
+
 ```
 Authorization: Bearer <your_token>
 ```
@@ -56,16 +60,16 @@ Authorization: Bearer <your_token>
 
 ## 🔗 API Endpoint Documentation
 
-| Method | Endpoint                  | Description                 |
-|--------|---------------------------|-----------------------------|
-| POST   | `/api/auth/register/`     | Register a new user         |
-| POST   | `/api/auth/login/`        | Get JWT tokens              |
-| POST   | `/api/auth/refresh/`      | Refresh JWT token           |
-| GET    | `/api/expenses/`          | List user's expenses (paginated) |
-| POST   | `/api/expenses/`          | Add new expense             |
-| GET    | `/api/expenses/{id}/`     | Get a specific record       |
-| PUT    | `/api/expenses/{id}/`     | Update a record             |
-| DELETE | `/api/expenses/{id}/`     | Delete a record             |
+| Method | Endpoint              | Description                      |
+| ------ | --------------------- | -------------------------------- |
+| POST   | `/api/auth/register/` | Register a new user              |
+| POST   | `/api/auth/login/`    | Get JWT tokens                   |
+| POST   | `/api/auth/refresh/`  | Refresh JWT token                |
+| GET    | `/api/expenses/`      | List user's expenses (paginated) |
+| POST   | `/api/expenses/`      | Add new expense                  |
+| GET    | `/api/expenses/{id}/` | Get a specific record            |
+| PUT    | `/api/expenses/{id}/` | Update a record                  |
+| DELETE | `/api/expenses/{id}/` | Delete a record                  |
 
 ---
 
@@ -84,6 +88,7 @@ Authorization: Bearer <your_token>
 ```
 
 **Response:**
+
 ```json
 {
   "message": "User registered successfully"
@@ -104,6 +109,7 @@ Authorization: Bearer <your_token>
 ```
 
 **Response:**
+
 ```json
 {
   "refresh": "...",
@@ -122,23 +128,24 @@ Headers: `Authorization: Bearer <token>`
 ```json
 {
   "title": "Groceries",
-  "amount": 100.00,
+  "amount": 100.0,
   "transaction_type": "debit",
-  "tax": 10.00,
+  "tax": 10.0,
   "tax_type": "flat"
 }
 ```
 
 **Response:**
+
 ```json
 {
   "id": 1,
   "title": "Groceries",
-  "amount": 100.00,
+  "amount": 100.0,
   "transaction_type": "debit",
-  "tax": 10.00,
+  "tax": 10.0,
   "tax_type": "flat",
-  "total": 110.00,
+  "total": 110.0,
   "created_at": "2025-01-01T10:00:00Z",
   "updated_at": "2025-01-01T10:00:00Z"
 }
@@ -151,6 +158,7 @@ Headers: `Authorization: Bearer <token>`
 **GET** `/api/expenses/`
 
 **Response:**
+
 ```json
 {
   "count": 25,
@@ -160,9 +168,9 @@ Headers: `Authorization: Bearer <token>`
     {
       "id": 1,
       "title": "Grocery Shopping",
-      "amount": 100.00,
+      "amount": 100.0,
       "transaction_type": "debit",
-      "total": 110.00,
+      "total": 110.0,
       "created_at": "2025-01-01T10:00:00Z"
     }
   ]
@@ -182,6 +190,7 @@ Headers: `Authorization: Bearer <token>`
 ```
 
 **Response:**
+
 ```json
 {
   "access": "<new_access_token>"
